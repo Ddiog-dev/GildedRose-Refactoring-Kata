@@ -79,9 +79,9 @@ class GildedRoseSpec extends Specification {
 
         where:
         list                                                      | sellIn | quality
-        [new Item("Conjured Brie", 0, 10)]                        | -1     | 6
-        [new Item("Conjured Brie", 5, 10)]                        | 4      | 8
         [new Item("Conjured Aged Brie", 5, 10)]                   | 4      | 12
+        [new Item("Backstage passes Aged Brie", 10, 10)]          | 9      | 12
+        [new Item("Backstage passes Conjured", 10, 10)]           | 9      | 14
         [new Item("Backstage passes Conjured Aged Brie", 10, 10)] | 9      | 14
     }
 
