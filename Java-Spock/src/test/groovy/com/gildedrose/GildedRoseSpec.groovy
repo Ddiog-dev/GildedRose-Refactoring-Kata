@@ -104,5 +104,32 @@ class GildedRoseSpec extends Specification {
         [new Item("Conjured Sulfuras", 10, 80)] | 9      | 80
     }
 
+    def "should never update quality of multiple objects"() {
+        given: "the application"
+        GildedRose app = new GildedRose(
+                [
+                        new Item("Sulfuras", 5, 80),
+                        new Item("Conjured Brie", 5, 10),
+                        new Item("Aged Brie", 5, 10),
+                        new Item("Backstage passes michel sardou", 6, 10)
+                ] as Item[])
+
+        when: "updating quality"
+        app.updateQuality()
+
+        then: "the quality is correct"
+        app.items[0].sellIn == 4
+        app.items[0].quality == 80
+
+        app.items[1].sellIn == 4
+        app.items[1].quality == 8
+
+        app.items[2].sellIn == 4
+        app.items[2].quality == 11
+
+        app.items[3].sellIn == 5
+        app.items[3].quality == 13
+    }
+
 
 }
